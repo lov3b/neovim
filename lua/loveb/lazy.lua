@@ -1,4 +1,4 @@
-require('nightTime')
+require('loveb.nightTime')
 
 require('lazy').setup({
   -- Git related plugins
@@ -11,7 +11,7 @@ require('lazy').setup({
     'neovim/nvim-lspconfig', -- LSP Configuration & Plugins
     opts = {
       inlay_hints = { enabled = true },
-    }
+    },
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim config = true },
       { 'williamboman/mason.nvim', config = true },
@@ -156,6 +156,6 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  require 'autoformat',
+  require 'loveb.autoformat',
   -- require 'kickstart.plugins.debug',
 }, {})
