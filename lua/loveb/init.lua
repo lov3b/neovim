@@ -1,4 +1,5 @@
+require('loveb.keymaps');
 require('loveb.setupLazy');
 require('loveb.lazy'); -- Package manager
-require('loveb.keymaps');
 
+vim.bo.tabstop = 4
