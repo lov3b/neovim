@@ -1,1 +1,1 @@
-require('loveb');
+require('setup');

@@ -1,4 +1,4 @@
-require('loveb.nightTime')
+require('setup.nightTime')
 
 require('lazy').setup({
   -- Git related plugins
@@ -157,7 +157,7 @@ require('lazy').setup({
       },
     },
     config = function()
-      require("loveb.setup_telescope").setup_telescope()
+      require("setup.setup_telescope").setup_telescope()
 
       local opts = { noremap = true, silent = true }
       local keymap = vim.api.nvim_set_keymap
@@ -190,6 +190,6 @@ require('lazy').setup({
     end,
   },
 
-  require 'loveb.autoformat',
+  require 'setup.autoformat',
   -- require 'kickstart.plugins.debug',
 }, {})
