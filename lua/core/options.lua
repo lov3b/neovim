@@ -17,6 +17,11 @@ o.ignorecase = true
 o.smartcase  = true
 o.hlsearch   = false
 
+-- Tabstop
+o.tabstop = 4
+o.softtabstop = 4
+o.shiftwidth = 4
+
 -- Performance
 o.updatetime  = 250
 o.timeoutlen  = 300
