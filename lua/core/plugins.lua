@@ -156,5 +156,7 @@ require('lazy').setup({
             )
         end,
     },
-})
+    { 'ThePrimeagen/harpoon', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'tpope/vim-fugitive' },
+}) 
 
