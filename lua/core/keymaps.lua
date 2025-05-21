@@ -43,3 +43,7 @@ map("n", "<leader>p", function()
   row = math.min(row, #cb)
   vim.api.nvim_win_set_cursor(0, { row, col })
 end, { desc = "Replace entire buffer with clipboard without moving cursor" })
+
+
+-- Paste, but not remove the paste buffer
+map("x", "<leader>p", "\"_dP")
