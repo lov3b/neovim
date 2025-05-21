@@ -64,7 +64,22 @@ require('lazy').setup({
 	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
-		config      = function() require('core.telescope') end,
+		config      = function() 
+			local telescope = require('telescope')
+			local actions   = require('telescope.actions')
+			telescope.setup {
+				defaults = {
+					prompt_prefix = '❯ ',
+					selection_caret = '➤ ',
+					mappings = {
+						i = {
+							['<C-b>'] = actions.preview_scrolling_up,
+							['<C-f>'] = actions.preview_scrolling_down,
+						},
+					},
+				},
+			}
+			end,
 	},
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
@@ -74,7 +89,7 @@ require('lazy').setup({
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
-		config = function() require('core.treesitter') end,
+		config = function() require('conf.treesitter') end,
 	},
 
 	-- Mason & LSP installer
@@ -125,7 +140,7 @@ require('lazy').setup({
 
 	{
 		'nvim-lualine/lualine.nvim',
-		opts = function() require('core.statusline') end,
+		opts = function() require('conf.statusline') end,
 	},
 
 	{
@@ -143,5 +158,3 @@ require('lazy').setup({
 	},
 })
 
-require("core.treesitter")
-require("core.telescope")

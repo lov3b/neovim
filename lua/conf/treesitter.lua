@@ -1,7 +1,7 @@
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
-    'lua', 'python', 'javascript', 'typescript',
-    'go', 'rust', 'c', 'cpp', 'vim'
+    'lua','python','javascript','typescript',
+    'go','rust','c','cpp','vim'
   },
   highlight = { enable = true },
   indent    = { enable = true },
@@ -15,14 +15,10 @@ require('nvim-treesitter.configs').setup {
       },
     },
     move = {
-      enable      = true,
-      set_jumps   = true,
-      goto_next_start = {
-        [']m'] = '@function.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-      },
+      enable          = true,
+      set_jumps       = true,
+      goto_next_start = { [']m'] = '@function.outer' },
+      goto_previous_start = { ['[m'] = '@function.outer' },
     },
   },
 }
