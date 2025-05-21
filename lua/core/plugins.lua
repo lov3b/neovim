@@ -129,3 +129,5 @@ require('lazy').setup({
   },
 })
 
+require("core.treesitter")
+require("core.telescope")
