@@ -127,6 +127,20 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     opts = function() require('core.statusline') end,
   },
+
+    {
+    "goolord/alpha-nvim",
+    -- dependencies = { 'echasnovski/mini.icons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local startify = require("alpha.themes.startify")
+      -- available: devicons, mini
+      startify.file_icons.provider = "devicons"
+      require("alpha").setup(
+        startify.config
+      )
+    end,
+  },
 })
 
 require("core.treesitter")
