@@ -31,9 +31,10 @@ map('n', '<leader>x', vim.cmd.Ex, { desc = 'Open Netrw Explorer' })
 
 -- Yank entire buffer
 map("n", "<leader>y", function()
-	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-	vim.fn.setreg("+", lines, "l")
-end, { desc = "Yank entire buffer to clipboard without moving cursor" })
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  vim.cmd('%yank +')
+  vim.api.nvim_win_set_cursor(0, {row, col})
+end, { desc = "Yank entire buffer to clipboard" })
 
 -- Paste to entire buffer
 map("n", "<leader>p", function()
