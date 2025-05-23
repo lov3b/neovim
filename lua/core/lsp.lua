@@ -4,7 +4,17 @@ local lspconfig    = require('lspconfig')
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 
 -- Servers
-local servers = { "ruff", "lua_ls", "rust_analyzer", "clangd", "ts_ls" }
+local servers = {
+  "clangd",
+  "rust_analyzer",
+  "ts_ls",
+  "jdtls",
+  "kotlin_language_server",
+  "pyright",
+  "bashls",
+  "lua_ls",
+}
+
 mason.setup()
 mason_lsp.setup {
   ensure_installed = servers,
