@@ -10,6 +10,7 @@ vim.pack.add({
   'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
   'https://github.com/williamboman/mason.nvim',
   'https://github.com/williamboman/mason-lspconfig.nvim',
+  'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim',
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/hrsh7th/nvim-cmp',
   'https://github.com/hrsh7th/cmp-nvim-lsp',

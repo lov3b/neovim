@@ -48,3 +48,11 @@ end, { desc = "Replace entire buffer with clipboard without moving cursor" })
 
 -- Paste, but not remove the paste buffer
 map("x", "<leader>p", "\"_dP")
+
+vim.keymap.set("n", "<leader>F", function()
+  vim.lsp.buf.format({
+    async = false,
+    timeout_ms = 2000,
+    filter = function(client) return client.name == "null-ls" end,
+  })
+end, { desc = "Format buffer (null-ls)" })
