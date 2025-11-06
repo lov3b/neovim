@@ -21,6 +21,9 @@ vim.pack.add({
   'https://github.com/nvim-lualine/lualine.nvim',
   'https://github.com/goolord/alpha-nvim',
   'https://github.com/stevearc/oil.nvim',
+
+  'https://github.com/MunifTanjim/nui.nvim',
+  'https://github.com/nvim-neo-tree/neo-tree.nvim',
   -- 'https://github.com/tpope/vim-fugitive',
   -- 'https://github.com/ThePrimeagen/harpoon',
 }, { load = true })
