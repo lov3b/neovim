@@ -1,6 +1,5 @@
 local mason        = require('mason')
 local mason_lsp    = require('mason-lspconfig')
-local lspconfig    = require('lspconfig')
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 
 -- Servers
@@ -34,8 +33,10 @@ end
 
 -- Setup each installed server
 for _, name in ipairs(servers) do
-  lspconfig[name].setup {
+  vim.lsp.config(name, {
     on_attach    = on_attach,
     capabilities = capabilities,
-  }
+  })
 end
+
+vim.lsp.enable(servers)
