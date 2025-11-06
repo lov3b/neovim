@@ -1,4 +1,4 @@
-return {
+require('lualine').setup({
   options = {
     icons_enabled = true,
     theme         = 'auto',
@@ -13,5 +13,4 @@ return {
     lualine_y = {'progress'},
     lualine_z = {'location'},
   },
-}
-
+})

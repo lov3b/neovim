@@ -40,3 +40,4 @@ for _, name in ipairs(servers) do
 end
 
 vim.lsp.enable(servers)
+
