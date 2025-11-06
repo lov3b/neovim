@@ -145,12 +145,12 @@ require('lazy').setup({
 
     {
         "goolord/alpha-nvim",
-        -- dependencies = { 'echasnovski/mini.icons' },
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        -- dependencies = { 'nvim-tree/nvim-web-devicons' },
+        dependencies = { 'echasnovski/mini.icons' },
         config = function()
             local startify = require("alpha.themes.startify")
             -- available: devicons, mini
-            startify.file_icons.provider = "devicons"
+            startify.file_icons.provider = "mini"
             require("alpha").setup(
                 startify.config
             )
@@ -158,5 +158,13 @@ require('lazy').setup({
     },
     { 'ThePrimeagen/harpoon', dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'tpope/vim-fugitive' },
+    {
+      'stevearc/oil.nvim',
+      ---@module 'oil'
+      ---@type oil.SetupOpts
+      opts = {},
+      dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+      lazy = false,
+    },
 }) 
 
