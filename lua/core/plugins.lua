@@ -1,4 +1,16 @@
+-- can be nvim-tree/nvim-web-devicons, devicons
+local icons = { repo = 'echasnovski/mini.icons', provider = 'mini'}
+
 require('lazy').setup({
+    {
+     icons.repo,
+     lazy = false,
+     priority = 1001,
+     config = function()
+       require('mini.icons').setup()
+       require('mini.icons').mock_nvim_web_devicons()
+     end,
+    },
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-lua/popup.nvim' },
 
@@ -145,25 +157,24 @@ require('lazy').setup({
 
     {
         "goolord/alpha-nvim",
-        -- dependencies = { 'nvim-tree/nvim-web-devicons' },
-        dependencies = { 'echasnovski/mini.icons' },
+        dependencies = { icons.repo },
         config = function()
             local startify = require("alpha.themes.startify")
             -- available: devicons, mini
-            startify.file_icons.provider = "mini"
+            startify.file_icons.provider = icons.provider
             require("alpha").setup(
                 startify.config
             )
         end,
     },
-    { 'ThePrimeagen/harpoon', dependencies = { 'nvim-lua/plenary.nvim' } },
+    -- { 'ThePrimeagen/harpoon', dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'tpope/vim-fugitive' },
     {
       'stevearc/oil.nvim',
       ---@module 'oil'
       ---@type oil.SetupOpts
       opts = {},
-      dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+      dependencies = { { icons.repo, opts = {} } },
       lazy = false,
     },
 }) 
