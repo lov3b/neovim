@@ -4,9 +4,15 @@ require("mason-tool-installer").setup({
 		-- Lua
 		"stylua",
 		-- Python
-		"ruff",
+		"black",
+		"isort",
 		-- Web stuff
 		"prettier",
+		-- Go
+		"gofumpt",
+		"goimports",
+		-- Rust
+		"rustfmt",
 		-- C/C++
 		"clang-format",
 		-- Shell

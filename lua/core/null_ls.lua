@@ -8,7 +8,8 @@ null_ls.setup({
 		-- Lua
 		f.stylua,
 		-- Python: choose EITHER ruff_format OR black+isort
-		f.ruff_format,
+		f.black,
+		f.isort,
 		-- JS/TS/JSON/MD/HTML/CSS/YAML
 		f.prettier,
 		-- Go
