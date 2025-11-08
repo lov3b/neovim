@@ -24,8 +24,6 @@ null_ls.setup({
 		f.ktlint,
 		-- Java
 		f.google_java_format,
-		-- Diagnostics
-		d.ruff,
 	},
 
 	on_attach = function(client, bufnr)
