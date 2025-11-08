@@ -24,6 +24,10 @@
       "rev": "20ad441",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "lazydev.nvim": {
+      "rev": "5231c62",
+      "src": "https://github.com/folke/lazydev.nvim"
+    },
     "lualine.nvim": {
       "rev": "3946f01",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
@@ -47,6 +51,10 @@
     "neo-tree.nvim": {
       "rev": "f3df514",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"
+    },
+    "neodev.nvim": {
+      "rev": "46aa467",
+      "src": "https://github.com/folke/neodev.nvim"
     },
     "none-ls.nvim": {
       "rev": "5501975",

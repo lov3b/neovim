@@ -1,3 +1,10 @@
+pcall(function()
+	require("lazydev").setup({
+		-- optional: add luv (vim.uv) types when you actually use them
+		library = { { path = "${3rd}/luv/library", words = { "vim%.uv" } } },
+	})
+end)
+
 local mason = require("mason")
 local mason_lsp = require("mason-lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
