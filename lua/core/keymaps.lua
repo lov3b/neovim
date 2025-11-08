@@ -60,3 +60,22 @@ vim.keymap.set("n", "<leader>F", function()
 		end,
 	})
 end, { desc = "Format buffer (null-ls)" })
+
+vim.keymap.set("n", "<leader>fd", function()
+	local dir = vim.fn.expand("%:p:h")
+	local path = vim.fn.input("New file: ", dir .. "/", "file")
+	if path == "" then
+		return
+	end
+	vim.cmd("edit " .. vim.fn.fnameescape(path))
+end, { desc = "New file beside current" })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = vim.api.nvim_create_augroup("MkDirOnSave", { clear = true }),
+	callback = function(args)
+		local d = vim.fn.fnamemodify(args.match, ":p:h")
+		if vim.fn.isdirectory(d) == 0 then
+			vim.fn.mkdir(d, "p")
+		end
+	end,
+})
