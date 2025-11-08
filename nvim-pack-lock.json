@@ -108,6 +108,10 @@
       "rev": "7dbbcfd",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
+    "vim-fugitive": {
+      "rev": "61b51c0",
+      "src": "https://github.com/tpope/vim-fugitive"
+    },
     "which-key.nvim": {
       "rev": "3aab214",
       "src": "https://github.com/folke/which-key.nvim"
