@@ -36,6 +36,7 @@ require("neo-tree").setup({
 			["r"] = "refresh",
 			["h"] = "close_node",
 			["l"] = "open",
+			["t"] = "open_tabnew",
 		},
 	},
 
