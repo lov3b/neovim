@@ -48,6 +48,10 @@
       "rev": "f3df514",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"
     },
+    "none-ls.nvim": {
+      "rev": "5501975",
+      "src": "https://github.com/nvimtools/none-ls.nvim"
+    },
     "nui.nvim": {
       "rev": "de74099",
       "src": "https://github.com/MunifTanjim/nui.nvim"

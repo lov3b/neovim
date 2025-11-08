@@ -6,4 +6,5 @@ vim.g.maplocalleader = ' '
 require('core.plugins')
 require('core.options')
 require('core.keymaps')
+require('core.null_ls')
 

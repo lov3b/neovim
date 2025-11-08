@@ -1,3 +1,1 @@
-require('gitsigns').setup(
-    { signs = { add='+', change='~', delete='_' }}
-)
+require("gitsigns").setup({ signs = { add = "+", change = "~", delete = "_" } })
