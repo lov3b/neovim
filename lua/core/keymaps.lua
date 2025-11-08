@@ -61,7 +61,7 @@ vim.keymap.set("n", "<leader>F", function()
 	})
 end, { desc = "Format buffer (null-ls)" })
 
-vim.keymap.set("n", "<leader>fd", function()
+vim.keymap.set("n", "<leader>fn", function()
 	local dir = vim.fn.expand("%:p:h")
 	local path = vim.fn.input("New file: ", dir .. "/", "file")
 	if path == "" then
