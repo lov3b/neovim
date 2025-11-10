@@ -48,6 +48,7 @@ vim.pack.add({
 	-- File explorer
 	"https://github.com/MunifTanjim/nui.nvim", -- UI components; dependency of neo-tree
 	"https://github.com/nvim-neo-tree/neo-tree.nvim", -- file explorer; depends on nui.nvim + plenary.nvim + icons
+	"https://github.com/s1n7ax/nvim-window-picker", -- For picking window
 
 	-- Lua nvim experience
 	"https://github.com/folke/lazydev.nvim", -- improves LuaLS workspace/types; provides cmp source (depends on nvim-cmp if present)

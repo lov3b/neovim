@@ -84,6 +84,10 @@
       "rev": "5ca4aaa",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
+    "nvim-window-picker": {
+      "rev": "6382540",
+      "src": "https://github.com/s1n7ax/nvim-window-picker"
+    },
     "oil.nvim": {
       "rev": "7e1cd77",
       "src": "https://github.com/stevearc/oil.nvim"
