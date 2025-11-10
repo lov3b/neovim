@@ -49,7 +49,7 @@ map("n", "<leader>p", function()
 end, { desc = "Replace entire buffer with clipboard without moving cursor" })
 
 -- Paste, but not remove the paste buffer
-map("x", "<leader>p", '"_dP')
+--map("x", "<leader>p", '"_dP')
 
 vim.keymap.set("n", "<leader>F", function()
 	vim.lsp.buf.format({
@@ -79,3 +79,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		end
 	end,
 })
+map('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
