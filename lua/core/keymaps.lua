@@ -24,8 +24,8 @@ map("n", "<C-k>", "<C-w>k", { desc = "Above window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Right window" })
 
 -- Diagnostics
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+map("n", "-", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
+map("n", "+", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
 
@@ -79,4 +79,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		end
 	end,
 })
-map('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
+map("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
