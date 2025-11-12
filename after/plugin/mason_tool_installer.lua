@@ -8,9 +8,6 @@ require("mason-tool-installer").setup({
 		"isort",
 		-- Web stuff
 		"prettier",
-		-- Go
-		"gofumpt",
-		"goimports",
 		-- Rust
 		"rustfmt",
 		-- C/C++

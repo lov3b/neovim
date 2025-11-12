@@ -20,6 +20,10 @@
       "rev": "bd5a7d6",
       "src": "https://github.com/hrsh7th/cmp-nvim-lsp"
     },
+    "conform.nvim": {
+      "rev": "cde4da5",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
     "gitsigns.nvim": {
       "rev": "20ad441",
       "src": "https://github.com/lewis6991/gitsigns.nvim"

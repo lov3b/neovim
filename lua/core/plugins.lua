@@ -4,7 +4,7 @@ vim.pack.add({
 	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 
 	-- Lua utility libs (dependencies for many plugins)
-	"https://github.com/nvim-lua/plenary.nvim", -- dependency for: telescope, gitsigns, neo-tree, none-ls, project.nvim...
+	"https://github.com/nvim-lua/plenary.nvim", -- dependency for: telescope, gitsigns, neo-tree, project.nvim...
 	"https://github.com/nvim-lua/popup.nvim", -- legacy popup helper; kept for compatibility
 
 	-- Project management
@@ -43,7 +43,7 @@ vim.pack.add({
 	-- "https://github.com/ThePrimeagen/harpoon", -- marks/quick-jump
 
 	-- Formatting/diagnostics via external tools
-	"https://github.com/nvimtools/none-ls.nvim", -- null-ls fork; depends on plenary.nvim
+	"https://github.com/stevearc/conform.nvim", -- formatter
 
 	-- File explorer
 	"https://github.com/MunifTanjim/nui.nvim", -- UI components; dependency of neo-tree
