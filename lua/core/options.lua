@@ -38,3 +38,22 @@ o.undodir = undordir_base .. "/undodir"
 o.swapfile = false
 o.backup = false
 o.undofile = true
+
+-- Autoread from changed file
+o.autoread = true
+
+-- Reload file when changed externally
+vim.api.nvim_create_augroup("AutoReload", { clear = true })
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	group = "AutoReload",
+	pattern = "*",
+	command = "checktime",
+})
+-- Notification when file changes
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+	group = "AutoReload",
+	pattern = "*",
+	callback = function()
+		vim.notify("File changed on disk. Buffer reloaded!", vim.log.levels.INFO)
+	end,
+})
