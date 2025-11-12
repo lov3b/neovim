@@ -33,7 +33,7 @@ o.completeopt = { "menuone", "noselect" }
 o.colorcolumn = "100"
 
 -- Backup
-local undordir_base = os.getenv("XDG_DATA_HOME") or (os.getenv("HOME") .. "/.vim")
+local undordir_base = os.getenv("XDG_DATA_HOME") or ((os.getenv("HOME") or os.getenv("USERPROFILE")) .. "/.vim")
 o.undodir = undordir_base .. "/undodir"
 o.swapfile = false
 o.backup = false
