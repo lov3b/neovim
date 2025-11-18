@@ -37,7 +37,9 @@ local on_attach = function(_, bufnr)
 	end
 	buf_map("gd", vim.lsp.buf.definition, "Go to definition")
 	buf_map("K", vim.lsp.buf.hover, "Hover docs")
-	buf_map("<leader>rn", vim.lsp.buf.rename, "Rename")
+	buf_map("<leader>rn", function()
+		vim.lsp.buf.rename()
+	end, "Rename")
 end
 
 -- Setup each installed server
