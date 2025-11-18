@@ -5,12 +5,19 @@ o.number = true
 o.relativenumber = true
 o.signcolumn = "yes"
 o.termguicolors = true
+o.scrolloff = 8
+o.sidescrolloff = 8
+o.showmode = false -- lualine does this
+o.conceallevel = 0 -- Show all characters (useful for markdown, JSON)
+o.pumheight = 10 -- Max completion popup height
 
 -- Editing
 o.clipboard = "unnamedplus"
 o.mouse = "a"
 o.breakindent = true
 o.wrap = false
+o.smartindent = true
+o.backspace = { "indent", "eol", "start" }
 
 -- Search
 o.ignorecase = true
@@ -41,6 +48,10 @@ o.undofile = true
 
 -- Autoread from changed file
 o.autoread = true
+
+-- Splits
+o.splitright = true -- Vertical splits go right
+o.splitbelow = true -- Horizontal splits go below
 
 -- Reload file when changed externally
 vim.api.nvim_create_augroup("AutoReload", { clear = true })

@@ -76,18 +76,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 map("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 map("v", "<leader>h", function()
-	local start_pos = vim.fn.getpos("'<")
-	local end_pos = vim.fn.getpos("'>")
-	local lines = vim.fn.getregion(start_pos, end_pos, { type = vim.fn.mode() })
-	local text = table.concat(lines, "\n")
+	vim.cmd('noautocmd normal! "vy')
+	local text = vim.fn.getreg("v")
 
-	-- Escape special characters for search pattern
 	text = vim.fn.escape(text, [[\/.*$^~[]])
 
 	-- Set search register and enable highlighting
 	vim.fn.setreg("/", "\\V" .. text)
-	vim.o.hlsearch = true
-
-	-- Clear visual selection
-	vim.cmd("normal! <Esc>")
+	vim.opt.hlsearch = true
 end, { desc = "Highlight all occurrences of selection" })
+
+map("n", "<leader>h", function()
+	vim.opt.hlsearch = false
+end, { desc = "Clear search highlighting" })
