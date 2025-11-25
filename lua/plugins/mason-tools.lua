@@ -14,6 +14,8 @@ return {
 				"ktlint",
 				"google-java-format",
 				"latexindent",
+				"codelldb",
+				"debugpy",
 			},
 			run_on_start = true,
 		})
