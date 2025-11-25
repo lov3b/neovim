@@ -19,6 +19,7 @@ return {
 			"pyright",
 			"bashls",
 			"lua_ls",
+			"texlab",
 		}
 
 		mason.setup()

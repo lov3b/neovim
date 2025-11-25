@@ -79,6 +79,6 @@ return {
 		map("n", "<leader>fe", "<cmd>Neotree toggle<CR>", { desc = "Neo-tree: Toggle" })
 		map("n", "<leader>fr", "<cmd>Neotree reveal<CR>", { desc = "Neo-tree: Reveal current file" })
 		map("n", "<leader>fgs", "<cmd>Neotree git_status toggle<CR>", { desc = "Neo-tree: Git status" })
-		map("n", "<leader>fbf", "<cmd>Neotree buffers toggle<CR>", { desc = "Neo-tree: Buffers" })
+		map("n", "<leader>fB", "<cmd>Neotree buffers toggle<CR>", { desc = "Neo-tree: Buffers" })
 	end,
 }

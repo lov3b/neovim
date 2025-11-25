@@ -1,4 +1,4 @@
-# prefer nushell on windows
+-- prefer nushell on windows
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 	local nu_path = vim.fn.expand("~/AppData/Local/Programs/nu/bin/nu.exe")
 	local use_nu = vim.fn.executable("nu") or vim.fn.filereadable(nu_path)
