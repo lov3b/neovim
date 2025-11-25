@@ -21,6 +21,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Monkeypatch for project.nvim
+if vim.version().minor > 10 then
+	vim.lsp.buf_get_clients = vim.lsp.get_clients
+end
+
 -- Setup Lazy
 require("lazy").setup("plugins", {
 	change_detection = { notify = false },
