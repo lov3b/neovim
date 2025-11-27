@@ -1,3 +1,5 @@
+local terminal = require("core.terminal_tab")
+
 local map = vim.keymap.set
 
 -- clear <Space>
@@ -91,3 +93,7 @@ map("n", "<leader>h", function()
 end, { desc = "Clear search highlighting" })
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+
+map("n", "<leader>t", function()
+	terminal.toggle_terminal()
+end, { desc = "Toggle Terminal Tab" })
