@@ -89,3 +89,5 @@ end, { desc = "Highlight all occurrences of selection" })
 map("n", "<leader>h", function()
 	vim.opt.hlsearch = false
 end, { desc = "Clear search highlighting" })
+
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
