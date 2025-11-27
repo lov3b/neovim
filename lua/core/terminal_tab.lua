@@ -75,4 +75,28 @@ M.toggle_terminal = function()
 	end
 end
 
+M.send_command = function(cmd_text)
+	local exists_term = M.state.term_tab_id and vim.api.nvim_tabpage_is_valid(M.state.term_tab_id)
+	if not exists_term then
+		M.state.came_from = vim.api.nvim_get_current_tabpage()
+		M.state.term_tab_id = create_terminal()
+	end
+
+	vim.api.nvim_set_current_tabpage(M.state.term_tab_id)
+	vim.cmd("tabmove $")
+
+	assert(M.state.term_buf_id and vim.api.nvim_buf_is_valid(M.state.term_buf_id), "Terminal died directly")
+	local job_id = vim.b[M.state.term_buf_id].terminal_job_id
+	assert(job_id, "Terminal didn't return a job-id")
+	if job_id then
+		vim.api.nvim_chan_send(job_id, "\x03") -- Interrupt previous job
+
+		vim.defer_fn(function()
+			vim.api.nvim_chan_send(job_id, cmd_text .. "\n")
+			vim.cmd("normal! G")
+			vim.cmd("startinsert")
+		end, 50)
+	end
+end
+
 return M
