@@ -32,8 +32,19 @@ map("n", "<leader>+", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
 
--- Netrw
--- map('n', '<leader>x', vim.cmd.Ex, { desc = 'Open Netrw Explorer' })
+-- Remove arrows
+vim.keymap.set("n", "<up>", "<nop>")
+vim.keymap.set("n", "<down>", "<nop>")
+vim.keymap.set("i", "<up>", "<nop>")
+vim.keymap.set("i", "<down>", "<nop>")
+vim.keymap.set("i", "<left>", "<nop>")
+vim.keymap.set("i", "<right>", "<nop>")
+-- let the left and right arrows be useful: they can switch buffers
+vim.keymap.set("n", "<left>", ":bp<cr>")
+vim.keymap.set("n", "<right>", ":bn<cr>")
+
+-- quick-save
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
 
 -- Yank entire buffer
 map("n", "<leader>y", function()
@@ -45,7 +56,7 @@ end, { desc = "Yank entire buffer to clipboard" })
 -- Paste to entire buffer
 map("n", "<leader>p", function()
 	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-	local cb = vim.fn.getreg("+", 1, true)
+	local cb = vim.fn.getreg("+", 1)
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, cb)
 	row = math.min(row, #cb)
 	vim.api.nvim_win_set_cursor(0, { row, col })

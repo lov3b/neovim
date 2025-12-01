@@ -68,3 +68,5 @@ vim.api.nvim_create_autocmd("FileChangedShellPost", {
 		vim.notify("File changed on disk. Buffer reloaded!", vim.log.levels.INFO)
 	end,
 })
+
+vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
