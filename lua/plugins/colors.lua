@@ -1,11 +1,14 @@
+local env_override_theme = vim.env.NVIM_THEME
+
 return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
+		lazy = false, -- Make sure we load this during startup
 		config = function()
 			require("catppuccin").setup({
-				flavour = "auto", -- This lets catppuccin switch based on 'set background'
+				flavour = "auto", -- Automatically switch based on background
 				background = { light = "latte", dark = "mocha" },
 				transparent_background = false,
 				show_end_of_buffer = false,
@@ -20,15 +23,23 @@ return {
 				},
 			})
 
+			if env_override_theme == "light" then
+				vim.o.background = "light"
+			elseif env_override_theme == "dark" then
+				vim.o.background = "dark"
+			end
+
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
+
 	{
 		"f-person/auto-dark-mode.nvim",
-		lazy = false, -- Must load immediately to prevent theme flashing
-		priority = 1001, -- Load before catppuccin
+		enabled = env_override_theme == nil, -- Only enable this plugin if we aren't manually overriding via env
+		priority = 1001,
+		lazy = false,
 		opts = {
-			update_interval = 1000, -- Check every second
+			update_interval = 1000,
 			set_dark_mode = function()
 				vim.api.nvim_set_option_value("background", "dark", {})
 				vim.cmd("colorscheme catppuccin")
