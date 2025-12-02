@@ -66,5 +66,6 @@ return {
 			group = vim.api.nvim_create_augroup("VimtexAskAutoStart", { clear = true }),
 			callback = show_compile_prompt,
 		})
+		vim.keymap.set("n", "<leader>wc", "<cmd>VimtexCountWords<cr>", { desc = "VimTeX: Count words" })
 	end,
 }

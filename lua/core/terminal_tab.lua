@@ -102,7 +102,6 @@ M.send_command = function(cmd_text)
 		vim.defer_fn(function()
 			vim.api.nvim_chan_send(job_id, cmd_text .. "\n")
 			vim.cmd("normal! G")
-			vim.cmd("startinsert")
 		end, 50)
 	end
 end
