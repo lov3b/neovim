@@ -48,6 +48,43 @@ local function show_compile_prompt()
 	end)
 end
 
+local function get_visual_selection()
+	local mode = vim.fn.mode()
+	local start_pos = vim.fn.getpos("v")
+	local end_pos = vim.fn.getpos(".")
+
+	-- Convert 1-based Vim indices to 0-based API indices
+	local s_row, s_col = start_pos[2] - 1, start_pos[3] - 1
+	local e_row, e_col = end_pos[2] - 1, end_pos[3] - 1
+
+	-- Ensure start is before end
+	if s_row > e_row or (s_row == e_row and s_col > e_col) then
+		s_row, e_row, s_col, e_col = e_row, s_row, e_col, s_col
+	end
+
+	local lines = {}
+	if mode == "V" then
+		lines = vim.api.nvim_buf_get_lines(0, s_row, e_row + 1, false)
+	elseif mode == "v" or mode == "\22" then -- 'v' or Ctrl-V
+		lines = vim.api.nvim_buf_get_text(0, s_row, s_col, e_row, e_col + 1, {})
+	end
+
+	return table.concat(lines, "\n")
+end
+
+local function count_visual_selection()
+	local text = get_visual_selection()
+
+	if not text or text == "" then
+		return
+	end
+
+	local result = vim.fn.system("texcount -brief -", text)
+	local show = result:gsub("%+.*", ""):gsub("%s+$", "")
+	vim.notify(show, vim.log.levels.INFO, { title = "Word Count (Selection)" })
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+end
+
 return {
 	"lervag/vimtex",
 	lazy = false,
@@ -67,5 +104,6 @@ return {
 			callback = show_compile_prompt,
 		})
 		vim.keymap.set("n", "<leader>wc", "<cmd>VimtexCountWords<cr>", { desc = "VimTeX: Count words" })
+		vim.keymap.set("x", "<leader>wc", count_visual_selection, { desc = "VimTeX: Count words in selection" })
 	end,
 }

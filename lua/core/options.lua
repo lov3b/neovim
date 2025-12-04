@@ -70,3 +70,12 @@ vim.api.nvim_create_autocmd("FileChangedShellPost", {
 })
 
 vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+
+-- For latex
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "tex", "bib", "plaintex" },
+	callback = function()
+		vim.opt_local.colorcolumn = "80"
+		vim.opt_local.wrap = true
+	end,
+})
