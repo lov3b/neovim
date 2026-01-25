@@ -16,6 +16,7 @@ return {
 				"latexindent",
 				"codelldb",
 				"debugpy",
+				"typstyle",
 			},
 			run_on_start = true,
 		})

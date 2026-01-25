@@ -20,6 +20,7 @@ return {
 			"bashls",
 			"lua_ls",
 			"texlab",
+			"tinymist",
 		}
 
 		mason.setup()

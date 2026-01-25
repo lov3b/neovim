@@ -18,6 +18,7 @@ return {
 				"vim",
 				"java",
 				"kotlin",
+				"typst",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
