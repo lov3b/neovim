@@ -110,3 +110,15 @@ map("n", "<leader>t", terminal.toggle_terminal, { desc = "Toggle Terminal Tab" }
 
 local runner = Runner.new(terminal)
 map("n", "<leader>rp", runner.start_runner, { desc = "Execute project runner lua script" })
+
+-- Quick save
+map("n", "<leader>w", "<cmd>w<cr>")
+
+-- Ctrl+j and Ctrl+k as Esc
+local modes = { "n", "i", "v", "s", "x", "c", "o", "l", "t" }
+local keys = { "j", "k" }
+for _, key in pairs(keys) do
+	for _, mode in pairs(modes) do
+		map(mode, string.format("<C-%s>", key), "<Esc>")
+	end
+end
