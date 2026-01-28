@@ -13,6 +13,34 @@ A modular and opinionated -- which is should be -- Neovim config. It's using _la
 - **File Management:** [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) for the visual tree structure. [Oil.nvim](https://github.com/stevearc/oil.nvim) for editing directories like buffers.
 - **Git:** [LazyGit](https://github.com/jesseduffield/lazygit) integration via [Snacks.nvim](https://github.com/folke/snacks.nvim) floating window, and [Fugitive](https://github.com/tpope/vim-fugitive).
 - **Shell:** Prefers [NuShell](https://www.nushell.sh/) on Windows if available.
+- **Remaps:** Ctrl+j & Ctrl+k is Escape. I recommend that you remap caps and control.
+
+## Remap caps and control
+
+### macOS
+
+**Remap:**
+
+```bash
+hidutil property --set '{
+  "UserKeyMapping": [
+    {
+      "HIDKeyboardModifierMappingSrc": 0x700000039,
+      "HIDKeyboardModifierMappingDst": 0x7000000E0
+    },
+    {
+      "HIDKeyboardModifierMappingSrc": 0x7000000E0,
+      "HIDKeyboardModifierMappingDst": 0x700000039
+    }
+  ]
+}'
+```
+
+**Reset:**
+
+```bash
+hidutil property --set '{"UserKeyMapping":[]}'
+```
 
 ## Prerequisites
 
