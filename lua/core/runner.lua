@@ -16,9 +16,10 @@ A.new = function()
 			end
 		end
 		if not script_path then
-			local choice = vim.fn.confirm("run-project.lua not found. Create it?", "&Yes\n&No", 1)
-			if choice == 1 then
-				local template = [[
+			require("core.popup").ask_to_execute({
+				title = "Create run-project.lua?",
+				command = function()
+					local template = [[
 -- NVIM Project Runner Script
 -- This script is executed via 'nvim -l' in a terminal.
 
@@ -67,23 +68,44 @@ end
 
 print("Edit run-project.lua to configure your run command!")
 ]]
-				local new_file_path = root .. "/run-project.lua"
-				local file = io.open(new_file_path, "w")
-				if file then
-					file:write(template)
-					file:close()
-					vim.cmd("edit " .. vim.fn.fnameescape(new_file_path))
-					vim.notify("Created run-project.lua", vim.log.levels.INFO)
-				else
-					vim.notify("Failed to create run-project.lua", vim.log.levels.ERROR)
-				end
-			end
+					local new_file_path = root .. "/run-project.lua"
+					local file = io.open(new_file_path, "w")
+					if file then
+						file:write(template)
+						file:close()
+						vim.cmd("edit " .. vim.fn.fnameescape(new_file_path))
+						vim.notify("Created run-project.lua", vim.log.levels.INFO)
+					else
+						vim.notify("Failed to create run-project.lua", vim.log.levels.ERROR)
+					end
+				end,
+			})
 			return
 		end
 
 		local cmd = string.format("nvim -l %q", script_path)
 		vim.notify("Starting project runner: " .. vim.fn.fnamemodify(script_path, ":t"), vim.log.levels.INFO)
-		Snacks.terminal(cmd)
+
+		if M.terminal and M.terminal.buf and vim.api.nvim_buf_is_valid(M.terminal.buf) then
+			local chan = vim.api.nvim_buf_get_option(M.terminal.buf, "channel")
+			vim.api.nvim_chan_send(chan, cmd .. "\r")
+			if M.terminal.show then
+				M.terminal:show()
+			else
+				M.terminal:toggle()
+			end
+		else
+			M.terminal = Snacks.terminal(nil, {
+				win = { position = "bottom", height = 0.4 },
+				interactive = true,
+			})
+			vim.defer_fn(function()
+				if M.terminal and M.terminal.buf and vim.api.nvim_buf_is_valid(M.terminal.buf) then
+					local chan = vim.api.nvim_buf_get_option(M.terminal.buf, "channel")
+					vim.api.nvim_chan_send(chan, cmd .. "\r")
+				end
+			end, 500)
+		end
 	end
 
 	return M
