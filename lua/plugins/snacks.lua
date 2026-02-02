@@ -93,13 +93,13 @@ return {
 			end,
 			desc = "Dismiss All Notifications",
 		},
-		-- {
-		-- 	"<leader>t",
-		-- 	function()
-		-- 		Snacks.terminal()
-		-- 	end,
-		-- 	desc = "Toggle Terminal",
-		-- },
+		{
+			"<leader>t",
+			function()
+				Snacks.terminal()
+			end,
+			desc = "Toggle Terminal",
+		},
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {

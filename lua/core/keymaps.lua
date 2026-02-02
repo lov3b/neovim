@@ -1,4 +1,3 @@
-local terminal = require("core.terminal_tab")
 local Runner = require("core.runner")
 
 local map = vim.keymap.set
@@ -104,9 +103,7 @@ end, { desc = "Clear search highlighting" })
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
-map("n", "<leader>t", terminal.toggle_terminal, { desc = "Toggle Terminal Tab" })
-
-local runner = Runner.new(terminal)
+local runner = Runner.new()
 map("n", "<leader>rp", runner.start_runner, { desc = "Execute project runner lua script" })
 
 -- Quick save
