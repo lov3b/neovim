@@ -19,7 +19,7 @@ A.new = function()
 			local choice = vim.fn.confirm("run-project.lua not found. Create it?", "&Yes\n&No", 1)
 			if choice == 1 then
 				local template = [[
--- Project Runner Script
+-- NVIM Project Runner Script
 -- This script is executed via 'nvim -l' in a terminal.
 
 local is_windows = vim.fn.has("win32") == 1
