@@ -87,7 +87,7 @@ print("Edit run-project.lua to configure your run command!")
 		vim.notify("Starting project runner: " .. vim.fn.fnamemodify(script_path, ":t"), vim.log.levels.INFO)
 
 		if M.terminal and M.terminal.buf and vim.api.nvim_buf_is_valid(M.terminal.buf) then
-			local chan = vim.api.nvim_buf_get_option(M.terminal.buf, "channel")
+			local chan = vim.api.nvim_get_option_value("channel", { buf = M.terminal.buf })
 			vim.api.nvim_chan_send(chan, cmd .. "\r")
 			if M.terminal.show then
 				M.terminal:show()
@@ -101,7 +101,7 @@ print("Edit run-project.lua to configure your run command!")
 			})
 			vim.defer_fn(function()
 				if M.terminal and M.terminal.buf and vim.api.nvim_buf_is_valid(M.terminal.buf) then
-					local chan = vim.api.nvim_buf_get_option(M.terminal.buf, "channel")
+					local chan = vim.api.nvim_get_option_value("channel", { buf = M.terminal.buf })
 					vim.api.nvim_chan_send(chan, cmd .. "\r")
 				end
 			end, 500)
