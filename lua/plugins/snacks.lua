@@ -28,7 +28,7 @@ return {
 		statuscolumn = { enabled = false }, -- Disabled: We rely Gitsigns/LSP setup
 		scroll = { enabled = false }, -- Smooth scrolling
 		words = { enabled = false }, -- Auto-highlight word under cursor
-		picker = { enabled = false }, -- Disabled: We're using Telescope
+		picker = { enabled = true, layout = { preset = "telescope" } },
 		explorer = { enabled = false }, -- Disabled: We're using Neo-tree
 	},
 	keys = {
@@ -99,6 +99,57 @@ return {
 				Snacks.terminal()
 			end,
 			desc = "Toggle Terminal",
+		},
+
+		-- Picker
+		{
+			"<leader>ff",
+			function()
+				Snacks.picker.files()
+			end,
+			desc = "Picker: Find Files",
+		},
+		{
+			"<C-p>",
+			function()
+				Snacks.picker.git_files()
+			end,
+			desc = "Picker: Find Git Files",
+		},
+		{
+			"<leader>fg",
+			function()
+				Snacks.picker.grep()
+			end,
+			desc = "Picker: Live grep",
+		},
+		{
+			"<leader>fr",
+			function()
+				Snacks.picker.recent()
+			end,
+			desc = "Picker: Recent",
+		},
+		{
+			"gr",
+			function()
+				Snacks.picker.lsp_references()
+			end,
+			desc = "Picker: LSP References",
+		},
+		{
+			"gi",
+			function()
+				Snacks.picker.lsp_incoming_calls()
+			end,
+			desc = "Picker: LSP Incoming Calls",
+		},
+		{
+			"<leader>fb",
+			function()
+				Snacks.picker.buffers()
+			end,
+			desc = "Picker: Find Buffers",
 		},
 	},
 	init = function()
