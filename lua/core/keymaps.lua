@@ -87,8 +87,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		end
 	end,
 })
-map("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
-
 map("v", "<leader>h", function()
 	vim.cmd('noautocmd normal! "vy')
 	local text = vim.fn.getreg("v")
@@ -115,10 +113,11 @@ map("n", "<leader>rp", runner.start_runner, { desc = "Execute project runner lua
 map("n", "<leader>w", "<cmd>w<cr>")
 
 -- Ctrl+j and Ctrl+k as Esc
-local modes = { "n", "i", "v", "s", "x", "c", "o", "l", "t" }
+local modes = { "n", "i", "v", "s", "x", "c", "o", "l" }
 local keys = { "j", "k" }
 for _, key in pairs(keys) do
 	for _, mode in pairs(modes) do
 		map(mode, string.format("<C-%s>", key), "<Esc>")
 	end
+	map("t", string.format("<C-%s>", key), [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 end
