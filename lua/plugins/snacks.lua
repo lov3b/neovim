@@ -29,10 +29,36 @@ return {
 		scroll = { enabled = false }, -- Smooth scrolling
 		words = { enabled = false }, -- Auto-highlight word under cursor
 		picker = { enabled = true, layout = { preset = "telescope" } },
-		explorer = { enabled = false }, -- Disabled: We're using Neo-tree
+		explorer = { enabled = true, replace_netrw = false }, -- We use Oil instead of NetRW
+	},
+	picker = {
+		sources = {
+			explorer = {
+				layout = {
+					preset = "sidebar",
+					preview = false,
+					layout = {
+						position = "left",
+						width = 30,
+					},
+				},
+				auto_close = false,
+				focus = "list",
+				jump = { close = false },
+				tree = true,
+				git_status = true,
+				diagnostics = true,
+			},
+		},
 	},
 	keys = {
-		-- Top Pickers & Explorer (use Snacks for things Telescope/Neo-tree doesn't do easily)
+		{
+			"<leader>fe",
+			function()
+				Snacks.explorer()
+			end,
+			desc = "Toggle Explorer Sidebar",
+		},
 		{
 			"<leader>.",
 			function()
