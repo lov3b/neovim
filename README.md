@@ -1,21 +1,89 @@
 # Neovim
 
-A modular and opinionated -- which is should be -- Neovim config. It's using _lazy.nvim_, modern lsp configuration, autoformatting, automatic light/dark mode... and more.
+A modular and opinionated Neovim config.
+It's using _lazy.nvim_, modern lsp configuration, autoformatting, automatic light/dark mode, and more.
 
-## Some features
+## Features
 
 - **Package Manager:** [lazy.nvim](https://github.com/folke/lazy.nvim).
 - **LSP & Formatting:** Full LSP support with auto-formatting.
-- **LaTeX:** robust LaTeX support with [VimTeX](https://github.com/lervag/vimtex). It auto-compiles on save and opens your PDF viewer:
-  - [Skim](https://skim-app.sourceforge.io/) on macOS
-  - [Zathura](https://pwmt.org/projects/zathura/) on Linux/Windows
-- **Theme:** [Catppuccin](https://github.com/catppuccin/nvim) that automatically syncs with your system's Light/Dark mode.
-- **File Management:** [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) for the visual tree structure. [Oil.nvim](https://github.com/stevearc/oil.nvim) for editing directories like buffers.
-- **Git:** [LazyGit](https://github.com/jesseduffield/lazygit) integration via [Snacks.nvim](https://github.com/folke/snacks.nvim) floating window, and [Fugitive](https://github.com/tpope/vim-fugitive).
+- **LaTeX:** Robust LaTeX support with [VimTeX](https://github.com/lervag/vimtex).
+  Auto-compiles on save and opens your PDF viewer (Skim on macOS & Zathura on Linux).
+- **Theme:** [Catppuccin](https://github.com/catppuccin/nvim) that automatically
+  syncs with your system's Light/Dark mode.
+- **File Management:** [Snacks.nvim](https://github.com/folke/snacks.nvim)
+  Explorer for the visual tree structure.
+  [Oil.nvim](https://github.com/stevearc/oil.nvim) for editing directories like buffers.
+- **Fuzzy Finder:** [Snacks.nvim](https://github.com/folke/snacks.nvim)
+  Picker for finding files, grep, and LSP symbols.
+- **Git:** [LazyGit](https://github.com/jesseduffield/lazygit) integration,
+  and [Fugitive](https://github.com/tpope/vim-fugitive).
 - **Shell:** Prefers [NuShell](https://www.nushell.sh/) on Windows if available.
-- **Remaps:** Ctrl+j & Ctrl+k is Escape. I recommend that you remap caps and control.
+- **Remaps:** Ctrl+j & Ctrl+k mapped to Escape.
 
-## Remap caps and control
+## Installer Script
+
+Included is a `nvim-installer.py` script to easily install or upgrade Neovim from GitHub Releases.
+This isn't recommended if your distrobution is providing a recent neovim version.
+
+**Usage:**
+
+```bash
+sudo python3 nvim-installer.py
+```
+
+- **Installs to:** `/opt/nvim`
+- **Symlink:** `/usr/local/bin/nvim`
+- **Requirements:** Python 3, `sudo` access.
+
+## Prerequisites
+
+- [Neovim](https://neovim.io/) (has to be recent)
+- [Nerd Font](https://www.nerdfonts.com/) (required for icons)
+- [Ripgrep](https://github.com/BurntSushi/ripgrep) (required for live grepping)
+- **Python 3** (required for the installer script)
+- [Lazygit](https://github.com/jesseduffield/lazygit)
+- **Skim** (macOS) or **Zathura** (Linux) for LaTeX preview.
+
+## Installation
+
+1.  **Clone this repo:**
+
+    ```bash
+    git clone https://github.com/lov3b/neovim ~/.config/nvim
+    ```
+
+2.  **Start Neovim:**
+    Run `nvim`. The plugins will install themselves.
+
+## Keymaps
+
+**Files & Navigation**
+
+- `<leader>ff` — Find files
+- `<leader>fg` — Live Grep
+- `<leader>fe` — Toggle Explorer
+- `<leader>-` — Edit directory
+- `<leader>bp` / `<leader>bn` — Previous/Next buffer
+
+**Coding & LSP**
+
+- `gd` — Go to Definition
+- `gr` — Go to References
+- `K` — Hover documentation
+- `<leader>rn` — Rename a variable with the LSP
+- `<leader>F` — Manual Format
+
+**Git**
+
+- `<leader>gg` — Open Lazygit (Floating)
+- `<leader>gs` — Git Status (Fugitive)
+
+**LaTeX**
+
+- Just save the file (`:w`) to trigger compilation.
+
+## Remap caps and control (recommended)
 
 ### macOS
 
@@ -41,51 +109,3 @@ hidutil property --set '{
 ```bash
 hidutil property --set '{"UserKeyMapping":[]}'
 ```
-
-## Prerequisites
-
-- [Neovim](https://neovim.io/) (v0.10+)
-- [Nerd Font](https://www.nerdfonts.com/) (required for icons)
-- [Ripgrep](https://github.com/BurntSushi/ripgrep) (required for Telescope search)
-- **GCC/Make** (required for Telescope FZF sorting)
-- [Lazygit](https://github.com/jesseduffield/lazygit) (optional, for the git integration)
-- **Skim** (macOS) or **Zathura** (Linux/Windows) for LaTeX preview.
-
-## Installation
-
-1.  **Clone this repo:**
-
-    ```bash
-    git clone https://github.com/lov3b/neovim ~/.config/nvim
-    ```
-
-2.  **Start Neovim:**
-    Run `nvim`. The plugins will install themselves.
-
-3.  **Profit?**
-
-## Some keymaps
-
-**Files & Navigation**
-
-- `<leader>ff` — Find files (Telescope)
-- `<leader>fg` — Live Grep (text search)
-- `<leader>fe` — Toggle File Explorer (Neo-tree)
-- `<leader>-` — Edit directory (Oil)
-- `<leader>bp` / `<leader>bn` — Previous/Next buffer
-
-**Coding**
-
-- `gd` — Go to Definition
-- `K` — Hover documentation
-- `<leader>rn` — Rename variable (smart rename)
-- `<leader>F` — Manual Format
-
-**Git**
-
-- `<leader>gg` — Open Lazygit (Floating)
-- `<leader>gs` — Git Status (Fugitive)
-
-**LaTeX**
-
-- Just save the file (`:w`) to trigger compilation.

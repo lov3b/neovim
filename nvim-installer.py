@@ -118,9 +118,8 @@ def run_command(cmd: list) -> Optional[str]:
 
 
 def exec_cmd(cmd_list):
-    """Runs a command directly (we are root). Converts Paths to strings."""
-    cmd_str = [str(c) for c in cmd_list]
-    subprocess.check_call(cmd_str)
+    """Runs a command directly. Converts Paths to strings."""
+    subprocess.check_call(list(map(str, cmd_list)))
 
 
 def get_latest_tag(repo):
@@ -135,7 +134,7 @@ def get_latest_tag(repo):
 
 
 def get_local_version(binary_path: Path):
-    """Gets version of the specifically targetted binary (e.g. v0.10.0) or None."""
+    """Gets version of the specifically targetted binary or None."""
     if not binary_path.exists():
         return None
 
