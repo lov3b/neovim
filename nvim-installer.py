@@ -19,14 +19,16 @@ from typing import Optional
 @dataclass(frozen=True)
 class Args:
     force: bool
+    uninstall: bool
     install_dir: Path
     symlink: Path
+    man_dir: Path
     repo: str
 
     @staticmethod
     def parse() -> "Args":
         parser = argparse.ArgumentParser(
-            description="Install or Upgrade Neovim from GitHub Releases"
+            description="Install, Upgrade, or Uninstall Neovim from GitHub Releases"
         )
 
         parser.add_argument(
@@ -34,6 +36,13 @@ class Args:
             "--force",
             action="store_true",
             help="Force reinstall even if version matches",
+        )
+
+        parser.add_argument(
+            "-u",
+            "--uninstall",
+            action="store_true",
+            help="Uninstall Neovim and remove symlinks",
         )
 
         parser.add_argument(
@@ -53,6 +62,14 @@ class Args:
         )
 
         parser.add_argument(
+            "-m",
+            "--man-dir",
+            type=Path,
+            default=Path("/usr/local/share/man/man1"),
+            help="Location to link the man page (Default: /usr/local/share/man/man1)",
+        )
+
+        parser.add_argument(
             "-r",
             "--repo",
             default="neovim/neovim",
@@ -62,8 +79,10 @@ class Args:
         args = parser.parse_args()
         return Args(
             force=args.force,
+            uninstall=args.uninstall,
             install_dir=args.install_dir,
             symlink=args.symlink,
+            man_dir=args.man_dir,
             repo=args.repo,
         )
 
@@ -94,7 +113,7 @@ class TerminalColor(str, enum.Enum):
 
 
 def log(msg, color=TerminalColor.NC):
-    print(f"{color}{msg}{TerminalColor.NC}")
+    print(f"{color.value}{msg}{TerminalColor.NC.value}")
 
 
 def panic(msg) -> Never:
@@ -178,6 +197,24 @@ def main():
         except subprocess.CalledProcessError as e:
             sys.exit(e.returncode)
         sys.exit(0)
+
+    if args.uninstall:
+        log("Uninstalling Neovim...", TerminalColor.BLUE)
+
+        if args.install_dir.exists():
+            log(f"Removing directory: {args.install_dir}", TerminalColor.YELLOW)
+            shutil.rmtree(args.install_dir)
+        else:
+            panic(f"Directory not found: {args.install_dir}")
+
+        if args.symlink.exists() or args.symlink.is_symlink():
+            log(f"Removing symlink: {args.symlink}", TerminalColor.YELLOW)
+            args.symlink.unlink()
+        else:
+            panic(f"Symlink not found: {args.symlink}")
+
+        log("Uninstallation complete.", TerminalColor.GREEN)
+        return
 
     log(f"Checking for latest version in {args.repo}...", TerminalColor.BLUE)
 
