@@ -32,18 +32,18 @@ map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
 
 -- Remove arrows
-vim.keymap.set("n", "<up>", "<nop>")
-vim.keymap.set("n", "<down>", "<nop>")
-vim.keymap.set("i", "<up>", "<nop>")
-vim.keymap.set("i", "<down>", "<nop>")
-vim.keymap.set("i", "<left>", "<nop>")
-vim.keymap.set("i", "<right>", "<nop>")
+map("n", "<up>", "<nop>")
+map("n", "<down>", "<nop>")
+map("i", "<up>", "<nop>")
+map("i", "<down>", "<nop>")
+map("i", "<left>", "<nop>")
+map("i", "<right>", "<nop>")
 -- let the left and right arrows be useful: they can switch buffers
-vim.keymap.set("n", "<left>", ":bp<cr>")
-vim.keymap.set("n", "<right>", ":bn<cr>")
+map("n", "<left>", ":bp<cr>")
+map("n", "<right>", ":bn<cr>")
 
 -- quick-save
-vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
+map("n", "<leader>w", "<cmd>w<cr>")
 
 -- Yank entire buffer
 map("n", "<leader>y", function()
@@ -64,11 +64,11 @@ end, { desc = "Replace entire buffer with clipboard without moving cursor" })
 -- Paste, but not remove the paste buffer
 --map("x", "<leader>p", '"_dP')
 
-vim.keymap.set("n", "<leader>F", function()
+map("n", "<leader>F", function()
 	require("conform").format({ async = false, timeout_ms = 2000 })
 end, { desc = "Format buffer" })
 
-vim.keymap.set("n", "<leader>fn", function()
+map("n", "<leader>fn", function()
 	local dir = vim.fn.expand("%:p:h")
 	local path = vim.fn.input("New file: ", dir .. "/", "file")
 	if path == "" then
@@ -101,7 +101,7 @@ map("n", "<leader>h", function()
 	vim.opt.hlsearch = false
 end, { desc = "Clear search highlighting" })
 
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+map("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 local runner = Runner.new()
 map("n", "<leader>rp", runner.start_runner, { desc = "Execute project runner lua script" })
