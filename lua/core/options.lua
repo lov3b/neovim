@@ -53,6 +53,8 @@ o.autoread = true
 o.splitright = true -- Vertical splits go right
 o.splitbelow = true -- Horizontal splits go below
 
+o.exrc = true
+
 -- Reload file when changed externally
 vim.api.nvim_create_augroup("AutoReload", { clear = true })
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
