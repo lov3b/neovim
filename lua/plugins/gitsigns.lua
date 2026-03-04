@@ -2,6 +2,10 @@ return {
 	"lewis6991/gitsigns.nvim",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
-		require("gitsigns").setup({ signs = { add = "+", change = "~", delete = "_" } })
+		require("gitsigns").setup({
+			signs = { add = "+", change = "~", delete = "_" },
+			linehl = true,
+			numhl = true,
+		})
 	end,
 }
