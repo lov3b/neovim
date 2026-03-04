@@ -25,7 +25,12 @@ return {
 		},
 
 		indent = { enabled = false }, -- "Better" indentation guides
-		statuscolumn = { enabled = false }, -- Disabled: We rely Gitsigns/LSP setup
+		statuscolumn = {
+			enabled = true,
+			left = { "git", "sign", "mark" },
+			right = { "fold" },
+			git = { patterns = { "GitSigns", "MiniDiffSign" } },
+		},
 		scroll = { enabled = false }, -- Smooth scrolling
 		words = { enabled = false }, -- Auto-highlight word under cursor
 		picker = { enabled = true, layout = { preset = "telescope" } },
@@ -76,11 +81,39 @@ return {
 
 		-- Git
 		{
+			"<leader>gs",
+			function()
+				Snacks.picker.git_status()
+			end,
+			desc = "Git Status",
+		},
+		{
+			"<leader>gd",
+			function()
+				Snacks.picker.git_diff()
+			end,
+			desc = "Git Diff (Hunks)",
+		},
+		{
+			"<leader>gL",
+			function()
+				Snacks.picker.git_log()
+			end,
+			desc = "Git Log",
+		},
+		{
 			"<leader>gB",
 			function()
 				Snacks.gitbrowse()
 			end,
 			desc = "Git Browse",
+		},
+		{
+			"<leader>gb",
+			function()
+				Snacks.git.blame_line()
+			end,
+			desc = "Git Blame Line",
 		},
 		{
 			"<leader>gg",

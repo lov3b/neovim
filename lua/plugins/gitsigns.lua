@@ -3,9 +3,14 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		require("gitsigns").setup({
-			signs = { add = "+", change = "~", delete = "_" },
-			linehl = true,
-			numhl = true,
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+			},
+			signcolumn = true,
+			linehl = false,
+			numhl = false,
 		})
 	end,
 }
