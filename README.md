@@ -7,6 +7,7 @@ It's using _lazy.nvim_, modern lsp configuration, autoformatting, automatic ligh
 
 - **Package Manager:** [lazy.nvim](https://github.com/folke/lazy.nvim).
 - **LSP & Formatting:** Full LSP support with auto-formatting.
+- **Nix/NixOS:** Treesitter, LSP, and formatting support for `*.nix` files.
 - **LaTeX:** Robust LaTeX support with [VimTeX](https://github.com/lervag/vimtex).
   Auto-compiles on save and opens your PDF viewer (Skim on macOS & Zathura on Linux).
 - **Theme:** [Catppuccin](https://github.com/catppuccin/nvim) that automatically
@@ -73,6 +74,8 @@ sudo python3 nvim-installer.py
 - `K` — Hover documentation
 - `<leader>rn` — Rename a variable with the LSP
 - `<leader>F` — Manual Format
+
+Nix files use `nil` for LSP and `nixfmt` for formatting.
 
 **Git**
 

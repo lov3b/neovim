@@ -13,6 +13,7 @@ return {
 		local servers = {
 			"clangd",
 			"rust_analyzer",
+			"nil_ls",
 			"ts_ls",
 			"jdtls",
 			"kotlin_language_server",
