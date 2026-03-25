@@ -23,10 +23,13 @@ return {
 			"texlab",
 			"tinymist",
 		}
+		local mason_servers = vim.tbl_filter(function(server)
+			return server ~= "nil_ls"
+		end, servers)
 
 		mason.setup()
 		mason_lsp.setup({
-			ensure_installed = servers,
+			ensure_installed = mason_servers,
 		})
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
