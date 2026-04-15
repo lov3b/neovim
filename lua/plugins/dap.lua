@@ -62,14 +62,15 @@ return {
 	config = function()
 		local dap = require("dap")
 		local dapui = require("dapui")
+		local mason_utils = require("core.mason")
 
 		require("mason-nvim-dap").setup({
 			automatic_installation = true,
 			handlers = {},
-			ensure_installed = {
+			ensure_installed = mason_utils.missing({
 				"codelldb", -- C/C++/Rust
 				"debugpy", -- Python
-			},
+			}),
 		})
 
 		dapui.setup()
