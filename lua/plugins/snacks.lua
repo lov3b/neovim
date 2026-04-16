@@ -10,6 +10,7 @@ return {
 		quickfile = { enabled = true, exclude = { "latex" } }, -- Speed up opening files
 		image = {
 			enabled = true,
+			doc = { inline = false },
 			formats = {
 				"png",
 				"jpg",
