@@ -73,6 +73,33 @@ return {
 			}),
 		})
 
+		-- Resolve python debug adapter at debug-time: prefer the
+		-- debugpy-adapter binary (Mason or otherwise on PATH), fall
+		-- back to running debugpy as a python module (Arch's
+		-- python-debugpy ships only the module).
+		dap.adapters.python = function(cb, _)
+			local cmd, args
+			if vim.fn.executable("debugpy-adapter") == 1 then
+				cmd, args = "debugpy-adapter", {}
+			else
+				cmd, args = "python", { "-m", "debugpy.adapter" }
+			end
+			cb({ type = "executable", command = cmd, args = args })
+		end
+
+		dap.configurations.python = dap.configurations.python
+			or {
+				{
+					type = "python",
+					request = "launch",
+					name = "Launch file",
+					program = "${file}",
+					pythonPath = function()
+						return vim.fn.exepath("python")
+					end,
+				},
+			}
+
 		dapui.setup()
 
 		-- Auto-open UI when debugging starts
