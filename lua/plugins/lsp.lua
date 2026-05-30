@@ -18,7 +18,7 @@ return {
 			"jdtls",
 			"rust_analyzer",
 			"kotlin_language_server",
-			"pyright",
+			"basedpyright",
 			"bashls",
 			"lua_ls",
 			"texlab",
@@ -69,6 +69,15 @@ return {
 								enable = true,
 								hideInferredTypes = false,
 							},
+						},
+					},
+				}
+			elseif name == "basedpyright" then
+				config.settings = {
+					basedpyright = {
+						analysis = {
+							typeCheckingMode = "standard",
+							autoImportCompletions = true,
 						},
 					},
 				}
