@@ -22,27 +22,11 @@ It's using _lazy.nvim_, modern lsp configuration, autoformatting, automatic ligh
 - **Shell:** Prefers [NuShell](https://www.nushell.sh/) on Windows if available.
 - **Remaps:** Ctrl+j & Ctrl+k mapped to Escape.
 
-## Installer Script
-
-Included is a `nvim-installer.py` script to easily install or upgrade Neovim from GitHub Releases.
-This isn't recommended if your distrobution is providing a recent neovim version.
-
-**Usage:**
-
-```bash
-sudo python3 nvim-installer.py
-```
-
-- **Installs to:** `/opt/nvim`
-- **Symlink:** `/usr/local/bin/nvim`
-- **Requirements:** Python 3, `sudo` access.
-
 ## Prerequisites
 
 - [Neovim](https://neovim.io/) (has to be recent)
 - [Nerd Font](https://www.nerdfonts.com/) (required for icons)
 - [Ripgrep](https://github.com/BurntSushi/ripgrep) (required for live grepping)
-- **Python 3** (required for the installer script)
 - [Lazygit](https://github.com/jesseduffield/lazygit)
 - **Skim** (macOS) or **Zathura** (Linux) for LaTeX preview.
 
@@ -64,6 +48,11 @@ sudo python3 nvim-installer.py
 - `<leader>ff` — Find files
 - `<leader>fg` — Live Grep
 - `<leader>fe` — Toggle Explorer
+- `<leader>fd` / `<leader>fs` — Diagnostics / LSP symbols
+- `<leader>fh` / `<leader>fk` — Help / Keymaps
+- `<leader>fu` — Undo history
+- `<leader>fR` — Resume last picker
+- `<leader>fl` — LSP servers and where they come from
 - `<leader>-` — Edit directory
 - `<leader>bp` / `<leader>bn` — Previous/Next buffer
 
@@ -74,13 +63,23 @@ sudo python3 nvim-installer.py
 - `K` — Hover documentation
 - `<leader>rn` — Rename a variable with the LSP
 - `<leader>F` — Manual Format
+- `]r` / `[r` — Next/previous reference to the symbol under the cursor
+- `ii` / `ai` — Inner/full indent scope textobject, `[i` / `]i` jump to its edges
+
+**Toggles**
+
+- `<leader>uf` — Format on save
+- `<leader>uh` — Inlay hints
+- `<leader>ud` — Diagnostics
+- `<leader>uw` — Line wrap
+- `<leader>uW` — Reference highlighting
 
 Nix files use `nil` for LSP and `nixfmt` for formatting.
 
 **Git**
 
 - `<leader>gg` — Open Lazygit (Floating)
-- `<leader>gs` — Git Status (Fugitive)
+- `<leader>gs` — Git Status (Snacks picker)
 
 **LaTeX**
 

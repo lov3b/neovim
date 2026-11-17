@@ -33,29 +33,31 @@ return {
 			git = { patterns = { "GitSigns", "MiniDiffSign" } },
 		},
 		scroll = { enabled = false }, -- Smooth scrolling
-		words = { enabled = false }, -- Auto-highlight word under cursor
-		picker = { enabled = true, layout = { preset = "telescope" } },
-		explorer = { enabled = true, replace_netrw = false }, -- We use Oil instead of NetRW
-	},
-	picker = {
-		sources = {
-			explorer = {
-				layout = {
-					preset = "sidebar",
-					preview = false,
+		words = { enabled = true }, -- Highlight LSP references of the symbol under the cursor; <leader>uW toggles
+		scope = { enabled = true }, -- ii/ai textobjects and [i/]i jumps by indent scope
+		picker = {
+			enabled = true,
+			layout = { preset = "telescope" },
+			sources = {
+				explorer = {
 					layout = {
-						position = "left",
-						width = 30,
+						preset = "sidebar",
+						preview = false,
+						layout = {
+							position = "left",
+							width = 30,
+						},
 					},
+					auto_close = false,
+					focus = "list",
+					jump = { close = false },
+					tree = true,
+					git_status = true,
+					diagnostics = true,
 				},
-				auto_close = false,
-				focus = "list",
-				jump = { close = false },
-				tree = true,
-				git_status = true,
-				diagnostics = true,
 			},
 		},
+		explorer = { enabled = true, replace_netrw = false }, -- We use Oil instead of NetRW
 	},
 	keys = {
 		{
@@ -211,6 +213,69 @@ return {
 			end,
 			desc = "Picker: Find Buffers",
 		},
+		{
+			"<leader>fd",
+			function()
+				Snacks.picker.diagnostics()
+			end,
+			desc = "Picker: Diagnostics",
+		},
+		{
+			"<leader>fs",
+			function()
+				Snacks.picker.lsp_symbols()
+			end,
+			desc = "Picker: LSP Symbols",
+		},
+		{
+			"<leader>fh",
+			function()
+				Snacks.picker.help()
+			end,
+			desc = "Picker: Help",
+		},
+		{
+			"<leader>fk",
+			function()
+				Snacks.picker.keymaps()
+			end,
+			desc = "Picker: Keymaps",
+		},
+		{
+			"<leader>fu",
+			function()
+				Snacks.picker.undo()
+			end,
+			desc = "Picker: Undo History",
+		},
+		{
+			"<leader>fR",
+			function()
+				Snacks.picker.resume()
+			end,
+			desc = "Picker: Resume Last",
+		},
+		{
+			"<leader>fl",
+			function()
+				Snacks.picker.lsp_config()
+			end,
+			desc = "Picker: LSP Servers",
+		},
+		{
+			"]r",
+			function()
+				Snacks.words.jump(vim.v.count1, true)
+			end,
+			desc = "Next Reference",
+		},
+		{
+			"[r",
+			function()
+				Snacks.words.jump(-vim.v.count1, true)
+			end,
+			desc = "Prev Reference",
+		},
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
@@ -224,6 +289,22 @@ return {
 					Snacks.debug.backtrace()
 				end
 				vim.print = _G.dd -- Override print to use snacks for cleaner output
+
+				Snacks.toggle
+					.new({
+						name = "Format on Save",
+						get = function()
+							return not vim.g.disable_autoformat
+						end,
+						set = function(is_enabled)
+							vim.g.disable_autoformat = not is_enabled
+						end,
+					})
+					:map("<leader>uf")
+				Snacks.toggle.inlay_hints():map("<leader>uh")
+				Snacks.toggle.diagnostics():map("<leader>ud")
+				Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+				Snacks.toggle.words():map("<leader>uW")
 			end,
 		})
 	end,

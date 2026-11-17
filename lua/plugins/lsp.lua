@@ -1,12 +1,11 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
-		local mason = require("mason")
 		local mason_lsp = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local mason_utils = require("core.mason")
@@ -19,6 +18,7 @@ return {
 			"rust_analyzer",
 			"kotlin_language_server",
 			"basedpyright",
+			"ruff",
 			"bashls",
 			"lua_ls",
 			"texlab",
@@ -28,11 +28,11 @@ return {
 			return server ~= "nil_ls"
 		end, servers)
 
-		mason.setup({
-			PATH = "append",
-		})
 		mason_lsp.setup({
 			ensure_installed = mason_utils.missing(mason_servers),
+			-- Only the servers listed above run; otherwise every package
+			-- Mason happens to have installed gets enabled.
+			automatic_enable = false,
 		})
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -72,6 +72,10 @@ return {
 						},
 					},
 				}
+			elseif name == "clangd" then
+				-- clangd logs every request to stderr, which Neovim writes to
+				-- lsp.log as errors; that grew the log to hundreds of MB.
+				config.cmd = { "clangd", "--log=error" }
 			elseif name == "basedpyright" then
 				config.settings = {
 					basedpyright = {

@@ -7,6 +7,7 @@ return {
 		"theHamsta/nvim-dap-virtual-text",
 		-- Bridges Mason and DAP
 		"jay-babu/mason-nvim-dap.nvim",
+		"mason-org/mason.nvim",
 	},
 	keys = {
 		{
@@ -65,7 +66,9 @@ return {
 		local mason_utils = require("core.mason")
 
 		require("mason-nvim-dap").setup({
-			automatic_installation = true,
+			-- Would install every configured adapter without looking at PATH;
+			-- `ensure_installed` below installs only what the system lacks.
+			automatic_installation = false,
 			handlers = {},
 			ensure_installed = mason_utils.missing({
 				"codelldb", -- C/C++/Rust
@@ -82,7 +85,7 @@ return {
 			if vim.fn.executable("debugpy-adapter") == 1 then
 				cmd, args = "debugpy-adapter", {}
 			else
-				cmd, args = "python", { "-m", "debugpy.adapter" }
+				cmd, args = mason_utils.python() or "python3", { "-m", "debugpy.adapter" }
 			end
 			cb({ type = "executable", command = cmd, args = args })
 		end
@@ -95,7 +98,7 @@ return {
 					name = "Launch file",
 					program = "${file}",
 					pythonPath = function()
-						return vim.fn.exepath("python")
+						return vim.fn.exepath(mason_utils.python() or "python3")
 					end,
 				},
 			}

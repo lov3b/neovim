@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = "YankHL",
 	pattern = "*",
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 	end,
 })
 
@@ -20,14 +20,23 @@ map("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
 map("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Prev buffer" })
 
 -- Window nav
+-- <C-j> and <C-k> are Esc, see the bottom of this file
 map("n", "<C-h>", "<C-w>h", { desc = "Left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Below window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Above window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Right window" })
 
 -- Diagnostics
-map("n", "<leader>0", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
-map("n", "<leader>+", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+local function show_diagnostic_float(diagnostic, bufnr)
+	if not diagnostic then
+		return
+	end
+	vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+end
+map("n", "<leader>0", function()
+	vim.diagnostic.jump({ count = -1, on_jump = show_diagnostic_float })
+end, { desc = "Prev diagnostic" })
+map("n", "<leader>+", function()
+	vim.diagnostic.jump({ count = 1, on_jump = show_diagnostic_float })
+end, { desc = "Next diagnostic" })
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
 
@@ -80,6 +89,12 @@ end, { desc = "New file beside current" })
 vim.api.nvim_create_autocmd("BufWritePre", {
 	group = vim.api.nvim_create_augroup("MkDirOnSave", { clear = true }),
 	callback = function(args)
+		-- Only real files have a directory to create. Oil buffers are named
+		-- "oil:///path/" (buftype acwrite), which mkdir would happily turn
+		-- into a literal "oil:" directory in the cwd.
+		if vim.bo[args.buf].buftype ~= "" then
+			return
+		end
 		local d = vim.fn.fnamemodify(args.match, ":p:h")
 		if vim.fn.isdirectory(d) == 0 then
 			vim.fn.mkdir(d, "p")
@@ -105,9 +120,6 @@ map("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 local runner = Runner.new()
 map("n", "<leader>rp", runner.start_runner, { desc = "Execute project runner lua script" })
-
--- Quick save
-map("n", "<leader>w", "<cmd>w<cr>")
 
 -- Ctrl+j and Ctrl+k as Esc
 local modes = { "n", "i", "v", "s", "x", "c", "o", "l" }
