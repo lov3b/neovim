@@ -21,6 +21,9 @@ It's using _lazy.nvim_, modern lsp configuration, autoformatting, automatic ligh
   and [Fugitive](https://github.com/tpope/vim-fugitive).
 - **Shell:** Prefers [NuShell](https://www.nushell.sh/) on Windows if available.
 - **Remaps:** Ctrl+j & Ctrl+k mapped to Escape.
+- **Dashboard:** `fortune | cowsay | lolcat` as the header, in plain Lua with no
+  external programs. The cows (`cows/`, from cowsay) and fortunes (`fortunes/`,
+  from fortune-mod) are vendored verbatim; drop in more files to add your own.
 
 ## Prerequisites
 
@@ -84,6 +87,17 @@ Nix files use `nil` for LSP and `nixfmt` for formatting.
 **LaTeX**
 
 - Just save the file (`:w`) to trigger compilation.
+
+**Dashboard**
+
+- `m` — New fortune and cow
+- `:FortuneCategories` — Choose the fortune categories (`off/` are the offensive ones)
+- `:CowsayCows` — Choose the cows
+
+## Development
+
+- **Test:** `nvim --clean --headless -l tests/fun_test.lua`
+- **Format:** `stylua .`, checked with `stylua --check .`
 
 ## Remap caps and control (recommended)
 

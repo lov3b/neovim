@@ -17,6 +17,12 @@ return {
 					{ icon = "\u{f426} ", key = "q", desc = "Quit", action = ":qa" },
 				},
 			},
+			sections = {
+				-- fortune | cowsay | lolcat as the header: `m`, :FortuneCategories, :CowsayCows
+				require("fun.dashboard").new({ reserved = 16 }):section({ padding = 2 }),
+				{ section = "keys", gap = 1, padding = 1 },
+				{ section = "startup" },
+			},
 		},
 		input = { enabled = true }, -- Better UI for "Rename" (vim.ui.input)
 		notifier = { enabled = true }, -- Better notifications (vim.notify)
