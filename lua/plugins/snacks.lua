@@ -52,6 +52,7 @@ return {
 					focus = "list",
 					jump = { close = false },
 					tree = true,
+					hidden = true, -- show dotfiles
 					git_status = true,
 					diagnostics = true,
 				},
