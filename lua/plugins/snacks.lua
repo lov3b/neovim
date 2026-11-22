@@ -4,7 +4,20 @@ return {
 	lazy = false,
 	opts = {
 		bigfile = { enabled = true }, -- Prevents freezing on large files
-		dashboard = { enabled = true }, -- Replaces alpha.nvim
+		dashboard = { -- Replaces alpha.nvim
+			enabled = true,
+			preset = {
+				-- stylua: ignore
+				keys = {
+					{ icon = "\u{f15b} ", key = "n", desc = "New File", action = ":ene | startinsert" },
+					{ icon = "\u{f0c5} ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+					{ icon = "\u{e348} ", key = "s", desc = "Restore Session", section = "session" },
+					{ icon = "\u{f03d6} ", key = "M", desc = "Mason", action = ":Mason" },
+					{ icon = "\u{f04b2} ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+					{ icon = "\u{f426} ", key = "q", desc = "Quit", action = ":qa" },
+				},
+			},
+		},
 		input = { enabled = true }, -- Better UI for "Rename" (vim.ui.input)
 		notifier = { enabled = true }, -- Better notifications (vim.notify)
 		quickfile = { enabled = true, exclude = { "latex" } }, -- Speed up opening files
